@@ -2,19 +2,13 @@ import { Base_Entity } from 'src/infrastructures/entity/base.entity';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class Movies extends Base_Entity {
+export class Movies_Tags extends Base_Entity {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  title: string;
+  movie_id: number;
 
   @Column()
-  overview: string;
-
-  @Column()
-  poster: string;
-
-  @Column()
-  play_until: string;
+  tag_id: number;
 }
