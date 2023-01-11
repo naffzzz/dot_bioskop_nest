@@ -4,6 +4,8 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Users } from './domains/users/entity/users.entity';
 import { Movies } from './domains/movies/entity/movies.entity';
+import { Movies_Schedules } from './domains/movies/entity/movies_schedules.entity';
+import { Movies_Tags } from './domains/movies/entity/movies_tags.entity';
 
 @Module({
   imports: [
@@ -14,7 +16,11 @@ import { Movies } from './domains/movies/entity/movies.entity';
       username: 'root',
       password: '',
       database: 'dot_bioskop',
-      entities: [Users, Movies],
+      entities: [Users, 
+        Movies,
+        Movies_Schedules,
+        Movies_Tags
+      ],
       synchronize: true,
     }),
   ],
