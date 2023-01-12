@@ -23,6 +23,11 @@ import { OrdersService } from './domains/orders/service/orders.service';
 import { OrdersController } from './domains/orders/controller/orders.controller';
 import { OrdersModule } from './domains/orders/module/orders.module';
 import { OrderItemsModule } from './domains/orders/module/order-items.module';
+import { MoviesController } from './domains/movies/controller/movies.controller';
+import { MoviesModule } from './domains/movies/module/movies.module';
+import { MoviesService } from './domains/movies/service/movies.service';
+import { MovieSchedulesModule } from './domains/movies/module/movie-shedules.module';
+import { MovieTagsModule } from './domains/movies/module/movie-tags.module';
 
 @Module({
   imports: [
@@ -48,17 +53,24 @@ import { OrderItemsModule } from './domains/orders/module/order-items.module';
     TagsModule,
     StudiosModule,
     OrdersModule,
-    OrderItemsModule
+    OrderItemsModule,
+    MoviesModule,
+    MovieSchedulesModule,
+    MovieTagsModule
   ], 
   controllers: [AppController, 
                 UsersController,
                 TagsController, 
                 StudiosController,
-                OrdersController],
+                OrdersController,
+                MoviesController
+              ],
   providers: [AppService, 
               UsersService, 
               TagsService, 
               StudiosService,
-              OrdersService],
+              OrdersService,
+              MoviesService
+            ],
 })
 export class AppModule {}

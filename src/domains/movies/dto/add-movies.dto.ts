@@ -16,7 +16,6 @@ export class AddMoviesDto {
   @IsNotEmpty()
   tag_id: number;
 
-  @IsNotEmpty()
   schedule_id: number;
   
 }
