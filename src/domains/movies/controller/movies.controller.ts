@@ -1,6 +1,6 @@
 import { Get, Controller, Render } from '@nestjs/common';
 
-@Controller()
+@Controller('movies')
 export class MoviesController {
   @Get()
   @Render('index')
