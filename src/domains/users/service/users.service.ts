@@ -4,6 +4,7 @@ import { timeStamp } from 'console';
 import { IsNull, Not, Repository } from 'typeorm';
 import { Users } from '../entity/users.entity';
 import { AddUserDto } from '../dto/add-user.dto';
+import { EditUserDto } from '../dto/edit-user.dto';
 
 @Injectable()
 export class UsersService {
@@ -30,7 +31,7 @@ export class UsersService {
 
   }
 
-  async updateUser(addUserDto : AddUserDto, id: number): Promise<Users> {
+  async updateUser(addUserDto : EditUserDto, id: number): Promise<Users> {
     const user = await this.findOne(id);
     
     user.name = addUserDto.name;
