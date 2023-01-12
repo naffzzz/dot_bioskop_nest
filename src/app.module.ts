@@ -10,12 +10,15 @@ import { Order_Items } from './domains/order_items/entity/order_items.entity';
 import { Orders } from './domains/orders/entity/orders.entity';
 import { Studios } from './domains/studios/entity/studios.entity';
 import { Tags } from './domains/tags/entity/tags.entity';
+import { UsersController } from './domains/users/controller/users.controller';
+import { UsersService } from './domains/users/service/users.service';
+import { UsersModule } from './domains/users/module/users.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
+      host: '127.0.0.1',
       port: 3306,
       username: 'root',
       password: '',
@@ -31,6 +34,9 @@ import { Tags } from './domains/tags/entity/tags.entity';
       ],
       synchronize: true,
     }),
-  ],
+    UsersModule
+  ], 
+  controllers: [AppController, UsersController],
+  providers: [AppService, UsersService],
 })
 export class AppModule {}

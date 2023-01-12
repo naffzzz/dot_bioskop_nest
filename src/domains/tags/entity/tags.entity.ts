@@ -1,8 +1,8 @@
-import { Base_Entity } from 'src/infrastructures/entity/base.entity';
+import { BaseEntity } from 'src/infrastructures/entity/base.entity';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class Tags extends Base_Entity {
+export class Tags extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 

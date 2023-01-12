@@ -1,8 +1,8 @@
-import { Base_Entity } from 'src/infrastructures/entity/base.entity';
+import { BaseEntity } from 'src/infrastructures/entity/base.entity';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class Order_Items extends Base_Entity {
+export class Order_Items extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 

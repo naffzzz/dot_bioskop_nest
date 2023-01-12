@@ -1,14 +1,14 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, DeleteDateColumn, CreateDateColumn } from 'typeorm';
 
 @Entity()
-export class Base_Entity {
+export class BaseEntity {
 
-  @Column()
+  @CreateDateColumn({ name: 'created_at' })
   created_at: Date;
 
-  @Column()
+  @Column({nullable : true})
   updated_at: Date;
 
-  @Column()
+  @DeleteDateColumn({ name: 'deleted_at' })
   deleted_at: Date;
 }
