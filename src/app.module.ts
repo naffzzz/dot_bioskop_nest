@@ -6,7 +6,7 @@ import { Users } from './domains/users/entity/users.entity';
 import { Movies } from './domains/movies/entity/movies.entity';
 import { Movies_Schedules } from './domains/movies/entity/movies_schedules.entity';
 import { Movies_Tags } from './domains/movies/entity/movies_tags.entity';
-import { Order_Items } from './domains/order_items/entity/order_items.entity';
+import { Order_Items } from './domains/orders/entity/order_items.entity';
 import { Orders } from './domains/orders/entity/orders.entity';
 import { Studios } from './domains/studios/entity/studios.entity';
 import { Tags } from './domains/tags/entity/tags.entity';
@@ -19,6 +19,10 @@ import { TagsModule } from './domains/tags/module/users.module';
 import { StudiosModule } from './domains/studios/module/users.module';
 import { StudiosService } from './domains/studios/service/studios.service';
 import { StudiosController } from './domains/studios/controller/studios.controller';
+import { OrdersService } from './domains/orders/service/orders.service';
+import { OrdersController } from './domains/orders/controller/orders.controller';
+import { OrdersModule } from './domains/orders/module/orders.module';
+import { OrderItemsModule } from './domains/orders/module/order-items.module';
 
 @Module({
   imports: [
@@ -42,15 +46,19 @@ import { StudiosController } from './domains/studios/controller/studios.controll
     }),
     UsersModule,
     TagsModule,
-    StudiosModule
+    StudiosModule,
+    OrdersModule,
+    OrderItemsModule
   ], 
   controllers: [AppController, 
                 UsersController,
                 TagsController, 
-                StudiosController],
+                StudiosController,
+                OrdersController],
   providers: [AppService, 
               UsersService, 
               TagsService, 
-              StudiosService],
+              StudiosService,
+              OrdersService],
 })
 export class AppModule {}
