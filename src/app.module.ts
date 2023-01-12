@@ -16,6 +16,9 @@ import { UsersModule } from './domains/users/module/users.module';
 import { TagsController } from './domains/tags/controller/tags.controller';
 import { TagsService } from './domains/tags/service/tags.service';
 import { TagsModule } from './domains/tags/module/users.module';
+import { StudiosModule } from './domains/studios/module/users.module';
+import { StudiosService } from './domains/studios/service/studios.service';
+import { StudiosController } from './domains/studios/controller/studios.controller';
 
 @Module({
   imports: [
@@ -38,9 +41,16 @@ import { TagsModule } from './domains/tags/module/users.module';
       synchronize: true,
     }),
     UsersModule,
-    TagsModule
+    TagsModule,
+    StudiosModule
   ], 
-  controllers: [AppController, UsersController, TagsController],
-  providers: [AppService, UsersService, TagsService],
+  controllers: [AppController, 
+                UsersController,
+                TagsController, 
+                StudiosController],
+  providers: [AppService, 
+              UsersService, 
+              TagsService, 
+              StudiosService],
 })
 export class AppModule {}
