@@ -1,7 +1,7 @@
 import { Get, Controller, Render, Patch, Param, Body, Put, Post } from '@nestjs/common';
-import { AddStudiosDto } from '../dto/add-studios.dto';
-import { EditStudiosDto } from '../dto/edit-studios.dto';
-import { StudiosService } from '../service/studios.service';
+import { AddStudiosDto } from '../../domains/studios/dto/add-studios.dto';
+import { EditStudiosDto } from '../../domains/studios/dto/edit-studios.dto';
+import { StudiosService } from '../../domains/studios/service/studios.service';
 
 @Controller('api/v1/studios')
 export class StudiosController {

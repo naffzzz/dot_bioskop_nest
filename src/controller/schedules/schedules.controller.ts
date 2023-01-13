@@ -1,7 +1,7 @@
 import { Get, Controller, Render, Patch, Param, Body, Put, Post } from '@nestjs/common';
-import { AddSchedulesDto } from '../dto/add-schedules.dto';
-import { EditSchedulesDto } from '../dto/edit-schedules.dto';
-import { SchedulesService } from '../service/schedules.service';
+import { AddSchedulesDto } from '../../domains/schedules/dto/add-schedules.dto';
+import { EditSchedulesDto } from '../../domains/schedules/dto/edit-schedules.dto';
+import { SchedulesService } from '../../domains/schedules/service/schedules.service';
 
 @Controller('api/v1/schedules')
 export class SchedulesController {

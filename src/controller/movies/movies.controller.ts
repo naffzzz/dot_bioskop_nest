@@ -1,9 +1,9 @@
 import { Get, Controller, Render, Patch, Param, Body, Put, Post } from '@nestjs/common';
-import { AddMovieSchedulesDto } from '../dto/add-movie-schedules.dto';
-import { AddMoviesDto } from '../dto/add-movies.dto';
-import { EditMovieSchedulesDto } from '../dto/edit-movie-schedules.dto';
-import { EditMoviesDto } from '../dto/edit-movies.dto';
-import { MoviesService } from '../service/movies.service';
+import { AddMovieSchedulesDto } from '../../domains/movies/dto/add-movie-schedules.dto';
+import { AddMoviesDto } from '../../domains/movies/dto/add-movies.dto';
+import { EditMovieSchedulesDto } from '../../domains/movies/dto/edit-movie-schedules.dto';
+import { EditMoviesDto } from '../../domains/movies/dto/edit-movies.dto';
+import { MoviesService } from '../../domains/movies/service/movies.service';
 
 @Controller('api/v1/movies')
 export class MoviesController {
