@@ -34,18 +34,6 @@ import { SchedulesService } from './domains/schedules/service/schedules.service'
 import { Schedules } from './domains/schedules/entity/schedules.entity';
 import dataSource, { dataSourceOptions } from '../db/data-source';
 
-// entities: [Users, 
-//   Movies,
-//   Movies_Schedules,
-//   Movies_Tags,
-//   Order_Items,
-//   Orders,
-//   Studios,
-//   Schedules,
-//   Tags
-// ],
-// synchronize: true,
-
 @Module({
   imports: [
     TypeOrmModule.forRoot(dataSourceOptions),
