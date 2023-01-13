@@ -1,15 +1,23 @@
+import { Movies_Schedules } from 'src/domains/movies/entity/movies_schedules.entity';
 import { BaseEntity } from 'src/infrastructures/entity/base.entity';
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, OneToOne } from 'typeorm';
+import { Orders } from './orders.entity';
 
 @Entity()
 export class Order_Items extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @ManyToOne(() => Orders, {
+    onDelete: 'CASCADE',
+  })
+  @JoinColumn({ name: 'order_id' })
   order_id: number;
 
-  @Column()
+  @OneToOne(() => Movies_Schedules, {
+    onDelete: 'CASCADE',
+  })
+  @JoinColumn({ name: 'movie_schedule_id' })
   movie_schedule_id: number;
 
   @Column()
