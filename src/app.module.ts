@@ -28,6 +28,10 @@ import { MoviesModule } from './domains/movies/module/movies.module';
 import { MoviesService } from './domains/movies/service/movies.service';
 import { MovieSchedulesModule } from './domains/movies/module/movie-shedules.module';
 import { MovieTagsModule } from './domains/movies/module/movie-tags.module';
+import { SchedulesModule } from './domains/schedules/module/schedules.module';
+import { SchedulesController } from './domains/schedules/controller/schedules.controller';
+import { SchedulesService } from './domains/schedules/service/schedules.service';
+import { Schedules } from './domains/schedules/entity/schedules.entity';
 
 @Module({
   imports: [
@@ -45,6 +49,7 @@ import { MovieTagsModule } from './domains/movies/module/movie-tags.module';
         Order_Items,
         Orders,
         Studios,
+        Schedules,
         Tags
       ],
       synchronize: true,
@@ -56,21 +61,24 @@ import { MovieTagsModule } from './domains/movies/module/movie-tags.module';
     OrderItemsModule,
     MoviesModule,
     MovieSchedulesModule,
-    MovieTagsModule
+    MovieTagsModule,
+    SchedulesModule
   ], 
   controllers: [AppController, 
                 UsersController,
                 TagsController, 
                 StudiosController,
                 OrdersController,
-                MoviesController
+                MoviesController,
+                SchedulesController
               ],
   providers: [AppService, 
               UsersService, 
               TagsService, 
               StudiosService,
               OrdersService,
-              MoviesService
+              MoviesService,
+              SchedulesService
             ],
 })
 export class AppModule {}

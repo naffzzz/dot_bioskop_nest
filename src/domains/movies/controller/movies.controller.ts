@@ -1,5 +1,7 @@
 import { Get, Controller, Render, Patch, Param, Body, Put, Post } from '@nestjs/common';
+import { AddMovieSchedulesDto } from '../dto/add-movie-schedules.dto';
 import { AddMoviesDto } from '../dto/add-movies.dto';
+import { EditMovieSchedulesDto } from '../dto/edit-movie-schedules.dto';
 import { EditMoviesDto } from '../dto/edit-movies.dto';
 import { MoviesService } from '../service/movies.service';
 
@@ -20,19 +22,35 @@ export class MoviesController {
   }
 
   @Post() 
-  async addUser(@Body() addUserDto: AddMoviesDto) {
-    return await this.moviesService.createMovie(addUserDto);
+  async addMovie(@Body() addMovieDto: AddMoviesDto) {
+    return await this.moviesService.createMovie(addMovieDto);
 
   }
 
   @Put(':id') 
-  async editUser(@Body() editUserDto: EditMoviesDto, @Param('id') id:number) {
-    return await this.moviesService.updateMovie(editUserDto, id);
+  async editMovie(@Body() editMovieDto: EditMoviesDto, @Param('id') id:number) {
+    return await this.moviesService.updateMovie(editMovieDto, id);
+  }
+
+  @Patch(':id') 
+  async deleteMovie(@Param('id') id:number) {
+    return await this.moviesService.deleteMovie(id);
+  }
+
+  @Post('schedules/:id') 
+  async addMovieSchedule(@Body() addMovieScheduleDto: AddMovieSchedulesDto, @Param('id') id:number) {
+    return await this.moviesService.createMovieSchedule(addMovieScheduleDto, id);
+
+  }
+
+  @Put('schedules/:id') 
+  async editMovieSchedule(@Body() editMovieScheduleDto: EditMovieSchedulesDto, @Param('id') id:number) {
+    return await this.moviesService.updateMovieSchedule(editMovieScheduleDto, id);
   }
 
 
-  @Patch(':id') 
-  async deleteUser(@Param('id') id:number) {
-    return await this.moviesService.deleteMovie(id);
+  @Patch('schedules/:id') 
+  async deletMovieSchedule(@Param('id') id:number) {
+    return await this.moviesService.deleteMovieSchedule(id);
   }
 }
