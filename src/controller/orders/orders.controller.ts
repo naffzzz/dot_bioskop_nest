@@ -1,7 +1,7 @@
 import { Get, Controller, Render, Patch, Param, Body, Put, Post } from '@nestjs/common';
-import { AddOrdersDto } from '../dto/add-orders.dto';
-import { EditOrdersDto } from '../dto/edit-orders.dto';
-import { OrdersService } from '../service/orders.service';
+import { AddOrdersDto } from '../../domains/orders/dto/add-orders.dto';
+import { EditOrdersDto } from '../../domains/orders/dto/edit-orders.dto';
+import { OrdersService } from '../../domains/orders/service/orders.service';
 
 @Controller('api/v1/orders')
 export class OrdersController {
