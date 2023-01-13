@@ -7,6 +7,8 @@ import { AddMoviesDto } from '../dto/add-movies.dto';
 import { EditMoviesDto } from '../dto/edit-movies.dto';
 import { Movies_Schedules } from '../entity/movies_schedules.entity';
 import { Movies_Tags } from '../entity/movies_tags.entity';
+import { AddMovieSchedulesDto } from '../dto/add-movie-schedules.dto';
+import { EditMovieSchedulesDto } from '../dto/edit-movie-schedules.dto';
 
 @Injectable()
 export class MoviesService {
@@ -51,9 +53,41 @@ export class MoviesService {
     return await this.movieTagsRepository.save(movieTags);
   }
 
+  async createMovieSchedule(addMovieSchedulesDto : AddMovieSchedulesDto, id : number): Promise<Movies_Schedules> {
+    const movieSchedules = new Movies_Schedules();
+    movieSchedules.movie_id = id;
+    movieSchedules.schedule_id = addMovieSchedulesDto.schedule_id;
+    movieSchedules.studio_id = addMovieSchedulesDto.studio_id;
+    movieSchedules.price = addMovieSchedulesDto.price;
+    movieSchedules.created_at = new Date();
+
+    await this.movieSchedulesRepository.save(movieSchedules);
+    return movieSchedules;
+  }
+
+  async updateMovieSchedule(editMovieSchedulesDto : EditMovieSchedulesDto, id: number): Promise<Movies_Schedules> {
+    const movieSchedules = await this.movieSchedulesRepository.findOne({where:{'id':id}});
+
+    if (!movieSchedules) 
+    {
+      throw new NotFoundException(`Movie schedules with ID ${id} is not found`);
+    }
+
+    movieSchedules.studio_id = editMovieSchedulesDto.studio_id;
+    movieSchedules.schedule_id = editMovieSchedulesDto.schedule_id;
+    movieSchedules.price = editMovieSchedulesDto.price;
+    
+    movieSchedules.updated_at = new Date();
+
+    await this.movieSchedulesRepository.update(id, movieSchedules);
+
+    return movieSchedules;
+
+  }
+
   async updateMovie(editMoviesDto : EditMoviesDto, id: number): Promise<Movies> {
     const movies = await this.findOne(id);
-    
+
     movies.title = editMoviesDto.title;
     movies.overview = editMoviesDto.overview;
     movies.poster = editMoviesDto.poster;
@@ -70,7 +104,11 @@ export class MoviesService {
 
   async updateMovieTag(addMoviesDto : EditMoviesDto, movieId : number): Promise<Movies_Tags> {
     const movieTags = await this.movieTagsRepository.findOne({where : {'movie_id' : movieId}});
-    
+
+    if (!movieTags) {
+      throw new NotFoundException(`Movie Tag with Movie ID ${movieId} is not found`);
+    }
+
     movieTags.tag_id = addMoviesDto.tag_id;
     movieTags.updated_at = new Date();
     await this.movieTagsRepository.update(movieTags.id, movieTags);
@@ -79,14 +117,23 @@ export class MoviesService {
   }
 
   async deleteMovie(id: number): Promise<Movies> {
-    const user = await this.findOne(id);
+    const movies = await this.findOne(id);
 
-    user.deleted_at = new Date();
+    movies.deleted_at = new Date();
 
-    await this.moviesRepository.update(id, user);
+    await this.moviesRepository.update(id, movies);
 
-    return user;
+    return movies;
+  }
 
+  async deleteMovieSchedule(id: number): Promise<Movies_Schedules> {
+    const movieSchedules = await this.movieSchedulesRepository.findOne({where : {'id':id}});
+
+    movieSchedules.deleted_at = new Date();
+
+    await this.movieSchedulesRepository.update(id, movieSchedules);
+
+    return movieSchedules;
   }
 
   async findOne(id: number): Promise<Movies> {

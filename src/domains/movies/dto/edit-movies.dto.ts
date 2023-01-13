@@ -10,7 +10,5 @@ export class EditMoviesDto {
   play_until: string;
 
   tag_id: number;
-
-  schedule_id : number;
   
 }

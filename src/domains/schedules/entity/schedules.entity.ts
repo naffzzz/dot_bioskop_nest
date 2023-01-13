@@ -2,19 +2,16 @@ import { BaseEntity } from 'src/infrastructures/entity/base.entity';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class Movies_Schedules extends BaseEntity  {
+export class Schedules extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  movie_id: number;
+  date: Date;
 
   @Column()
-  studio_id: number;
+  start_time: string;
 
   @Column()
-  schedule_id: number;
-
-  @Column()
-  price: number;
+  end_time: string;
 }
