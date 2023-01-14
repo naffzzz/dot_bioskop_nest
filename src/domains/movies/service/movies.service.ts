@@ -47,7 +47,6 @@ export class MoviesService {
   async createMovieTag(addMoviesDto : AddMoviesDto, movieId : number): Promise<Movies_Tags> {
     const movieTags = new Movies_Tags();
     movieTags.movie_id = movieId;
-    movieTags.tag_id = addMoviesDto.tag_id;
     movieTags.created_at = new Date();
 
     return await this.movieTagsRepository.save(movieTags);
@@ -109,7 +108,6 @@ export class MoviesService {
       throw new NotFoundException(`Movie Tag with Movie ID ${movieId} is not found`);
     }
 
-    movieTags.tag_id = addMoviesDto.tag_id;
     movieTags.updated_at = new Date();
     await this.movieTagsRepository.update(movieTags.id, movieTags);
 
@@ -137,7 +135,10 @@ export class MoviesService {
   }
 
   async findOne(id: number): Promise<Movies> {
-    const found = await this.moviesRepository.findOneBy({ id });
+    const found = await this.moviesRepository.findOne({
+      where : { 'id': id },
+      relations: ['movieTag']
+    });
 
     if (!found) {
       throw new NotFoundException(`Movies with ID ${id} is not found`);
