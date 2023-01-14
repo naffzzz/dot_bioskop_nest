@@ -1,13 +1,14 @@
 import { Users } from 'src/domains/users/entity/users.entity';
+import { Order_Items } from './order_items.entity';
 import { BaseEntity } from 'src/infrastructures/entity/base.entity';
-import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, ManyToOne } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 
 @Entity()
 export class Orders extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => Users, {
+  @ManyToOne(() => Users, (user) => user.id, {
     onDelete: 'CASCADE',
   })
   @JoinColumn({ name: 'user_id' })
@@ -18,4 +19,10 @@ export class Orders extends BaseEntity {
 
   @Column()
   total_item_price: number;
+
+  @OneToMany(() => Order_Items, (orderItems) => orderItems.order_id,{
+    onDelete: 'CASCADE',
+  })
+  @JoinColumn({ name: 'user_id' })
+  orderItems: Order_Items[];
 }

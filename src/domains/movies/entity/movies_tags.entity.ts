@@ -8,13 +8,13 @@ export class Movies_Tags extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @OneToOne(() => Movies, {
+  @OneToOne(() => Movies, (movie) => movie.movieTag,{
     onDelete: 'CASCADE',
   })
   @JoinColumn({ name: 'movie_id' })
   movie_id: number;
 
-  @OneToOne(() => Tags, tags => tags.id, {
+  @OneToOne(() => Tags, (tag) => tag.movieTag, {
     onDelete: 'CASCADE',
   })
   @JoinColumn({ name: 'tag_id' })
