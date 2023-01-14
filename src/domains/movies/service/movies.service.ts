@@ -55,8 +55,8 @@ export class MoviesService {
   async createMovieSchedule(addMovieSchedulesDto : AddMovieSchedulesDto, id : number): Promise<Movies_Schedules> {
     const movieSchedules = new Movies_Schedules();
     movieSchedules.movie_id = id;
-    movieSchedules.schedule_id = addMovieSchedulesDto.schedule_id;
-    movieSchedules.studio_id = addMovieSchedulesDto.studio_id;
+    movieSchedules.Schedules = addMovieSchedulesDto.schedule_id;
+    movieSchedules.Studio = addMovieSchedulesDto.studio_id;
     movieSchedules.price = addMovieSchedulesDto.price;
     movieSchedules.created_at = new Date();
 
@@ -72,8 +72,8 @@ export class MoviesService {
       throw new NotFoundException(`Movie schedules with ID ${id} is not found`);
     }
 
-    movieSchedules.studio_id = editMovieSchedulesDto.studio_id;
-    movieSchedules.schedule_id = editMovieSchedulesDto.schedule_id;
+    movieSchedules.Studio = editMovieSchedulesDto.studio_id;
+    movieSchedules.Schedules = editMovieSchedulesDto.schedule_id;
     movieSchedules.price = editMovieSchedulesDto.price;
     
     movieSchedules.updated_at = new Date();
@@ -137,7 +137,7 @@ export class MoviesService {
   async findOne(id: number): Promise<Movies> {
     const found = await this.moviesRepository.findOne({
       where : { 'id': id },
-      relations: ['movieTag']
+      relations: ['movieTag', 'movieSchedules']
     });
 
     if (!found) {
