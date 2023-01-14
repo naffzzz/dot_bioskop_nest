@@ -11,10 +11,10 @@ export class Movies_Tags extends BaseEntity {
   @OneToOne(() => Movies, {
     onDelete: 'CASCADE',
   })
-  @JoinColumn({ name: 'studio_id' })
+  @JoinColumn({ name: 'movie_id' })
   movie_id: number;
 
-  @OneToOne(() => Tags, {
+  @OneToOne(() => Tags, tags => tags.id, {
     onDelete: 'CASCADE',
   })
   @JoinColumn({ name: 'tag_id' })
