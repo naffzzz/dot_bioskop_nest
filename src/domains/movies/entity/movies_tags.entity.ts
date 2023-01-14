@@ -16,7 +16,8 @@ export class Movies_Tags extends BaseEntity {
 
   @OneToOne(() => Tags, (tag) => tag.movieTag, {
     onDelete: 'CASCADE',
+    eager: true
   })
   @JoinColumn({ name: 'tag_id' })
-  tag_id: number;
+  Tag: number;
 }
