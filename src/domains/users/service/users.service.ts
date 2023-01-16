@@ -6,6 +6,8 @@ import { Users } from '../entity/users.entity';
 import { AddUserDto } from '../dto/add-user.dto';
 import { EditUserDto } from '../dto/edit-user.dto';
 
+export type User = any;
+
 @Injectable()
 export class UsersService {
   constructor(
