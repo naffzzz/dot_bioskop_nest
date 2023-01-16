@@ -24,6 +24,13 @@ import { SchedulesModule } from './domains/schedules/module/schedules.module';
 import { SchedulesController } from './controller/schedules/schedules.controller';
 import { SchedulesService } from './domains/schedules/service/schedules.service';
 import dataSource, { dataSourceOptions } from '../db/data-source';
+import { AuthModule } from './domains/auth/module/auth.module';
+import { AuthController } from './controller/auth/auth.controller';
+import { AuthService } from './domains/auth/service/auth.service';
+import { JwtService } from '@nestjs/jwt';
+import { PassportModule } from '@nestjs/passport';
+// import { LocalStrategy } from './domains/auth/local.statregy';
+import { JwtStrategy } from './domains/auth/jwt.strategy';
 
 @Module({
   imports: [
@@ -36,7 +43,9 @@ import dataSource, { dataSourceOptions } from '../db/data-source';
     MoviesModule,
     MovieSchedulesModule,
     MovieTagsModule,
-    SchedulesModule
+    SchedulesModule,
+    PassportModule,
+    AuthModule
   ], 
   controllers: [AppController, 
                 UsersController,
@@ -44,7 +53,8 @@ import dataSource, { dataSourceOptions } from '../db/data-source';
                 StudiosController,
                 OrdersController,
                 MoviesController,
-                SchedulesController
+                SchedulesController,
+                AuthController
               ],
   providers: [AppService, 
               UsersService, 
@@ -52,7 +62,10 @@ import dataSource, { dataSourceOptions } from '../db/data-source';
               StudiosService,
               OrdersService,
               MoviesService,
-              SchedulesService
+              SchedulesService,
+              AuthService,
+              JwtService,
+              JwtStrategy
             ],
 })
 export class AppModule {}
