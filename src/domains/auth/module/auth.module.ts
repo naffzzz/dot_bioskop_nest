@@ -13,7 +13,7 @@ import { Users } from 'src/domains/users/entity/users.entity';
     UsersModule,
     PassportModule,
     JwtModule.register({
-      secret: jwtConstants.secret,
+      secretOrPrivateKey: jwtConstants.secret,
       signOptions: { expiresIn: '60s' },
     }),
     TypeOrmModule.forFeature([Users])

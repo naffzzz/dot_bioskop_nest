@@ -5,6 +5,7 @@ import { AuthDto } from '../dto/auth.dto';
 import { Users } from 'src/domains/users/entity/users.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
+import { jwtConstants } from '../constants';
 
 @Injectable()
 export class AuthService {
@@ -25,7 +26,7 @@ export class AuthService {
     const user = await this.usersRepository.findOne({ where: { 'email': email, 'password' : password } });
     if (user) {
       const payload = { email: authDto.email, password: authDto.password };
-      const accessToken: string = await this.jwtService.signAsync(payload);
+      const accessToken: string = await this.jwtService.signAsync(payload, {secret: jwtConstants.secret});
       return { accessToken };
     } else {
       throw new UnauthorizedException('Please enter valid credentials');
